@@ -10,98 +10,134 @@ public class P007_SubArrayOfDesiredSum {
 @Test
 public void dataSetOne()
 {
-	int[] array= {1,4,3,1,2,1,5,1};
+	int[] array= {1,7,4,3,4,1,2,1,5,1};
 	int requiredSum=7;
-	subArraySum(array,requiredSum);
-		/*
-		 * List<Integer> subArraySum = subArraySum(array,requiredSum);
-		 * System.out.println(subArraySum);
-		 */
-	
-	
-}
-@Test
-public void dataSetTwo()
+Map<Integer, Integer> subArraySum = subArraySum(array,requiredSum);
+System.out.println("One");
+for(Map.Entry<Integer,Integer> eachArray :subArraySum.entrySet())
 {
-	int[] array= {1,4,3,1,1,2,0,8,9,7,7};
-	int requiredSum=7;
-	// subArraySum(array,requiredSum);
-	//System.out.println(subArraySum);
-	
-	
+	System.out.println("----");
+	for(int i=eachArray.getKey();i<=eachArray.getValue();i++)
+	{
+		System.out.print(array[i]);
+		
+	}
 }
-@Test
-public void dataSetThree()
-{
-	int[] array= {1,2,3,0,8,9,3,4,8,9,6};
-	int requiredSum=7;
 	
 	
 }
 
+	
+	  @Test public void dataSetTwo() 
+	  { 
+		  int[] array= {1,4,3,1,1,2,0,8,9,7,7}; 
+		  int
+	  requiredSum=7; 
+		  Map<Integer, Integer> subArraySum = subArraySum(array,requiredSum);
+		  System.out.println("One");
+		  for(Map.Entry<Integer,Integer> eachArray :subArraySum.entrySet())
+		  {
+		  	System.out.println("----");
+		  	for(int i=eachArray.getKey();i<=eachArray.getValue();i++)
+		  	{
+		  		System.out.print(array[i]);
+		  		
+		  	}
+		  }
+	  
+	  }
+	  
+	  @Test public void dataSetThree() 
+	  { int[] array= {1,2,3,0,8,9,3,4,8,9,6};
+	  int requiredSum=7;
+	  
+	  Map<Integer, Integer> subArraySum = subArraySum(array,requiredSum);
+	  System.out.println("One");
+	  for(Map.Entry<Integer,Integer> eachArray :subArraySum.entrySet())
+	  {
+	  	System.out.println("----");
+	  	for(int i=eachArray.getKey();i<=eachArray.getValue();i++)
+	  	{
+	  		System.out.print(array[i]);
+	  		
+	  	}
+	  }}
+	 
 //Solution 1
-private List<Integer> subArraySum1(int[] array,int requiredSum)
+private Map<Integer,Integer> subArraySum1(int[] array,int requiredSum)
 {
-	int currentSum=0;
-	List<Integer> subArray=new ArrayList<>();
+	int currentSum=0;int tempSum=0;
+	Map<Integer,Integer> subArray=new HashMap<>();
 	for(int i=0;i<array.length;i++)
 	{
-		subArray.clear();
 		currentSum=0;
-		Boolean flag=false;
-		for(int j=i;j<array.length;j++)
+		if(array[i]==requiredSum)//O[N]
 		{
-			if(array[j]==requiredSum)
+			subArray.put(i, i);
+			
+		}
+		else if(array[i]<=requiredSum)
+		{
+		currentSum=array[i];
+		for(int j=i+1;j<array.length;j++)
+		{
+			tempSum=currentSum+array[j];
+		
+			if(tempSum==requiredSum)
 			{
-				subArray.clear();
-				subArray.add(array[j]);
-				flag=true;
-				return subArray;
-							}
-			if(array[j]>requiredSum)
+				subArray.put(i,j);
+				break;
+			}
+			else if(tempSum<requiredSum)
 			{
-				flag=true;
+				currentSum=tempSum;
 			}
 			else
-			{ 	flag=false;
-				currentSum=currentSum+array[j];
-				subArray.add(array[j]);
-				if(currentSum==requiredSum)
-				{
-					flag=true;
-					return subArray;
-				}
-				if(currentSum>requiredSum)
-				{
-					flag=true;;
-				}
-				if(flag)
-				{
-					break;
-				}
+			{
+				break;
 			}
+		}
+		
+		}
+		
+	}
+	return subArray;
+	
+	//throw new RuntimeException("No match");
+}
+
+//Solution 2(Using  windows Sliding technique)
+
+private Map<Integer,Integer> subArraySum(int[] array,int requiredSum)
+{ 
+	int startIndex=0;int windowSum=0;
+	Map<Integer,Integer> subArrays=new HashMap<>();
+	for(int i=0;i<array.length;i++)
+	{
+		windowSum=windowSum+array[i];
+		if(windowSum==requiredSum)
+		{
+			subArrays.put(startIndex, i);
+		}
+		while(windowSum>requiredSum)
+		{
+			windowSum=windowSum-array[startIndex];
+			startIndex++;
+			
+		}
+		if(windowSum==requiredSum)
+		{
+			subArrays.put(startIndex, i);
 		}
 		
 		
 	}
-	throw new RuntimeException("No match");
+	return subArrays;
+
 }
 
 //Solution 2 (Hashing)
-private void subArraySum(int[] array,int requiredSum)
-{
-	int sumSofar=0;int difference=0;
-Map<Integer,Integer> map=new HashMap<Integer,Integer>();
-for(int i=0;i<array.length;i++)
-{
-	sumSofar=sumSofar+array[i];
-	difference=sumSofar-requiredSum;
-	if(map.containsKey(difference))
-	{
-	
-		System.out.println("subarray"+map.get(difference)+1+","+i);
-	}
-	map.put(sumSofar, i);
-}
+private void subArraySum2(int[] array,int requiredSum)
+{ 
 
 }}

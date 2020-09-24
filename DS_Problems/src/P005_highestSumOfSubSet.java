@@ -69,17 +69,14 @@ public class P005_highestSumOfSubSet {
 		sum=maxSum;
 		for(int i=0;i<array.length-k;i++)
 		{
-			/*temp=sum-array[i];
-			sum=tem+array[i+k];
-			if(sum>maxSum)
-			{
-				maxSum=sum;
-			}*/
-			
 		sum=sum-array[i]+array[i+k];//O[N]
 		maxSum=Math.max(maxSum, sum);//O[1]
 		}
 		return maxSum;
 		
 	}
+	
+	
+	
 }
+
