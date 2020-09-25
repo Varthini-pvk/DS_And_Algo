@@ -25,7 +25,7 @@ public class P011_FindKlargest {
 	{
 			int[] inputArray= {1,3,5,8,9,11,12,123};
 			int k=10;
-			//System.out.println(findNumber(inputArray,k));
+			System.out.println(findNumber(inputArray,k));
 			
 	}
 	@Test
@@ -33,7 +33,7 @@ public class P011_FindKlargest {
 	{
 			int[] inputArray= {1,1,1,1,1};
 			int k=2;
-			//System.out.println(findNumber(inputArray,k));
+			System.out.println(findNumber(inputArray,k));
 			
 	}
 	@Test
@@ -41,7 +41,7 @@ public class P011_FindKlargest {
 	{
 			int[] inputArray= {-4,-5,-9,-2};
 			int k=2;
-			//System.out.println(findNumber(inputArray,k));
+			System.out.println(findNumber(inputArray,k));
 			
 	}
 	
@@ -110,6 +110,7 @@ public class P011_FindKlargest {
 	}
 	
 	//Total Time Complexity-->O[N]+O[N*N/2](Worst Case)
+	//                    ---->O[N*M](best case)
 
 	
 }

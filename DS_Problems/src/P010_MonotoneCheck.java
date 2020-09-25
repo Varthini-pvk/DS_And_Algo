@@ -34,33 +34,8 @@ public class P010_MonotoneCheck
 	}
 	
 
+
 //Solution 1
-private boolean checkMonotone1(int[] array)
-{
-	if(array[0]==array[array.length-1])//O[1]
-		return false;
-	else
-	{
-		Boolean increasingArray=true;
-		Boolean decreasingArray=true;
-		for(int i=0;i<array.length-1;i++)//O[N]
-		{
-			if(array[i]<array[i+1])
-			{
-				decreasingArray=false;
-				
-			}
-			if(array[i]>array[i+1])
-			{
-				increasingArray=false;
-				
-			}
-		}
-		return increasingArray||decreasingArray;//O[1]
-	}
-	
-}
-//Solution 2
 
 private boolean checkMonotone(int[] array)
 {
@@ -80,7 +55,7 @@ private boolean checkMonotone(int[] array)
 		int i=0;
 		if(decreasing)	
 		{
-		for(;i<array.length-1;i++)//O[M]( Worst Case O[N]
+		for(;i<array.length-1;i++)//O[M]( Worst Case O[N])
 		{
 			if(array[i]<array[i+1])
 			break;
@@ -109,4 +84,32 @@ private boolean checkMonotone(int[] array)
 
 
 //Total time Complexity=O[1]+O[1]+O[N]+O[N]==>O[N](best Case O[M])
+
+
+//Solution 2(referred solution)
+private boolean checkMonotone1(int[] array)
+{
+	if(array[0]==array[array.length-1])//O[1]
+		return false;
+	else
+	{
+		Boolean increasingArray=true;
+		Boolean decreasingArray=true;
+		for(int i=0;i<array.length-1;i++)//O[N]
+		{
+			if(array[i]<array[i+1])
+			{
+				decreasingArray=false;
+				
+			}
+			if(array[i]>array[i+1])
+			{
+				increasingArray=false;
+				
+			}
+		}
+		return increasingArray||decreasingArray;//O[1]
+	}
+	
+}
 }
