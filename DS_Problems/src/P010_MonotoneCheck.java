@@ -41,6 +41,7 @@ private boolean checkMonotone(int[] array)
 {
 	if(array[0]==array[array.length-1])//O[1]
 	return false;
+	
 	else
 	{
 		boolean decreasing;
@@ -70,6 +71,7 @@ private boolean checkMonotone(int[] array)
 			}
 			
 		}
+		
 		if(i==array.length-1)//O[1]
 		{
 			return true;
