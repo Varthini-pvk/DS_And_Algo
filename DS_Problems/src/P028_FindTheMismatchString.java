@@ -78,7 +78,7 @@ public class P028_FindTheMismatchString
 		}
 		
 		
-		 tempListTwo.removeAll(tempListOne);
+		 tempListTwo.removeAll(tempListOne);//O[N^2]
 		System.out.println(tempListTwo);
 	}	
 
@@ -87,7 +87,7 @@ public class P028_FindTheMismatchString
 	//iterate over the entry set of larger string
 	//compare the value of each key with the value of that key in the another map
 	//if values are not equal, return that key from the larger map
-	//[if the element is not present in may, null is return as value]
+	//[if the element is not present in map, null is returned]
 	private void findTheExtra2(String inputOne,String inputTwo)
 	{
 		Map<Character,Integer> tempListOne = new HashMap<Character,Integer>();

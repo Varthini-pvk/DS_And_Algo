@@ -118,7 +118,8 @@ public class P027_MedianOfTwoArrays {
 	//compare the elements from both arrays and put the lowest in a temp array and increment the respective pointer
 	//Continue loop till the length of the smallest array
 	//And the remaining element of the largest number to the temp Array
-	//Determine the length of temp array
+	
+	//2.Determine the length of temp array
 	//if odd, return n/2
 	//if even return (n/2+(n+1)/2)2, where n is the element at the respective index
 	
