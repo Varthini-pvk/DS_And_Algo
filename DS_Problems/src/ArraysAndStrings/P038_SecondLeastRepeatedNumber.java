@@ -19,7 +19,7 @@ import org.junit.Test;
 
 //is the input case sensitive
 //what is expected if there is more than one match
-public class P_038_SecondLeastRepeatedNumber {
+public class P038_SecondLeastRepeatedNumber {
 
 	//DataSets
 	@Test

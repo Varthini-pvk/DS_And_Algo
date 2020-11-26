@@ -8,7 +8,7 @@ import java.util.Set;
 
 import org.junit.Test;
 
-public class P_037FindPossiblePrimeNumbers {
+public class P037FindPossiblePrimeNumbers {
 
 
 	@Test
