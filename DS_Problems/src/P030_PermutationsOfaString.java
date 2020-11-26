@@ -19,7 +19,7 @@ import org.junit.Test;
 //Output: False
 
 
-public class P030_DetectAnagram {
+public class P030_PermutationsOfaString {
 
 	@Test
 	public void datsSetOne()
@@ -39,7 +39,7 @@ public class P030_DetectAnagram {
 	@Test
 	public void datsSetThree()
 	{
-		String one="eidbaooo";
+		String one="abc";
 		String two="ooo";
 		System.out.println("3."+detectAnagrams(one,two));
 	}
@@ -65,7 +65,7 @@ public class P030_DetectAnagram {
 	// Iterate over the list and check if the first String contains any entry of the list.
 	//if Yes, break the loop and return true
 	List<String> permutations=new LinkedList<>();
-	public Boolean detectAnagrams1(String inputOne,String inputTwo)
+	public Boolean detectAnagrams(String inputOne,String inputTwo)
 	{
 		Boolean flag=false;
 		
@@ -100,14 +100,14 @@ public class P030_DetectAnagram {
 		{
 			for(int i=startPosition;i<arrayLength;i++)
 			{
-				if(i>startPosition)
+				//if(i>startPosition)
 				{
 					temp=array[i];
 					array[i]=array[startPosition];
 					array[startPosition]=temp;
 				}
 				generatePermutations(array,startPosition+1,arrayLength);
-				if(i>startPosition)
+				//if(i>startPosition)
 				{
 					temp=array[i];
 					array[i]=array[startPosition];
@@ -129,7 +129,7 @@ public class P030_DetectAnagram {
 	//compare 2 Array 
 	//if yes , return true and break the loop
 
-	private Boolean detectAnagrams(String inputOne,String inputTwo)
+	private Boolean detectAnagrams2(String inputOne,String inputTwo)
 	{
 		Boolean result=false;
 		if(inputOne.length()>inputTwo.length())
@@ -138,15 +138,18 @@ public class P030_DetectAnagram {
 		int[] currentArray=new int[26];
 		inputTwo = inputTwo.toLowerCase();
 		int length = inputTwo.length();
+		
 		for(int i=0;i<length;i++)//O[M]
 		{
 			referenceArray[inputTwo.charAt(i)-'a']++;
 		}
+		
 		//Initial Window
 		for(int i=0;i<length;i++)//O[M]
 		{
 			currentArray[inputOne.charAt(i)-'a']++;
 		}
+		
 		if(Arrays.equals(referenceArray, currentArray))
 		{
 			result=true;

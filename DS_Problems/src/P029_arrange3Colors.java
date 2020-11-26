@@ -71,10 +71,10 @@ public class P029_arrange3Colors {
 			Set<Integer> temp= new HashSet<Integer>(inputList);
 			List<Integer> outputList = new ArrayList<Integer>();
 			int i=0;
-			for (Integer integer : temp) 
+			for (Integer integer : temp) //O[N]
 			{
 				i=0;				
-				while(i<(Collections.frequency(inputList, integer)))
+				while(i<(Collections.frequency(inputList, integer)))//O[N^2]
 				{
 					outputList.add(integer);
 					i++;

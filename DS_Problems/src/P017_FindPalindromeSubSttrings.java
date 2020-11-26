@@ -21,7 +21,7 @@ public class P017_FindPalindromeSubSttrings
 	@Test
 	public void dataSetOne()
 	{
-		String input="aaa";
+		String input="aaaa";
 		System.out.println(countPalindrome(input));
 	}
 	
@@ -29,7 +29,7 @@ public class P017_FindPalindromeSubSttrings
 	public void dataSetTwo()
 	{
 		String input="aabc";
-		System.out.println(countPalindrome(input));
+		//System.out.println(countPalindrome(input));
 	}
 	
 	
@@ -37,7 +37,7 @@ public class P017_FindPalindromeSubSttrings
 	public void dataSetThree()
 	{
 		String input="ffeaacddeeff";
-		System.out.println(countPalindrome(input));
+		//System.out.println(countPalindrome(input));
 	}
 	
 	//Solution 1
@@ -46,7 +46,7 @@ public class P017_FindPalindromeSubSttrings
 //		for the current element keep adding the all other elements and check if it is a palindrome
 //		if yes increase the counter 
 		
-	private int countPalindrome(String input)
+	private int countPalindrome1(String input)
 	{
 			char[] inputArray=input.toCharArray();
 			String temp="";String temptwo="";
@@ -91,5 +91,17 @@ public class P017_FindPalindromeSubSttrings
 //Loop using two pointers to find the the largest palindrome
 	//if not break the loop
 	//move the right pointer to continue to find the panlindromes
-	
+	private static int countPalindrome(String S) {
+        int N = S.length(), result = 0;
+        for (int center = 0; center <= 2*N-1; ++center) {
+            int left = center / 2;
+            int right = left + center % 2;
+            while (left >= 0 && right < N && S.charAt(left) == S.charAt(right)) {
+                result++;
+                left--;
+                right++;
+            }
+        }
+        return result;
+}
 }

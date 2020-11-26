@@ -29,8 +29,8 @@ public class P027_MedianOfTwoArrays {
 	//	Output: 2.5
 
 
-	//Median-Sum of all numbers/Total Number of numbers
-	//Also equal to n+1/2(middle number) or n+(n+1)/2 (average of middle numbers), if the numbers are sorted.
+	
+	//Median equal to n+1/2(middle number) or n+(n+1)/2 (average of middle numbers), if the numbers are sorted.
 	//DataSets
 	@Test
 	public void setOne()
@@ -44,8 +44,8 @@ public class P027_MedianOfTwoArrays {
 	@Test
 	public void setTwo()
 	{
-		int[] inputOne= {1,2};
-		int[] inputTwo= {3,4};
+		int[] inputOne= {1,1,3};
+		int[] inputTwo= {2,2};
 		System.out.println("Two: "+String.format("%.2f", findMedian(inputOne,inputTwo)));
 	}
 
@@ -68,10 +68,19 @@ public class P027_MedianOfTwoArrays {
 	@Test
 	public void setFive()
 	{
-		int[] inputOne= {1,1};
+		int[] inputOne= {1,2};
 		int[] inputTwo= {3,4};
 		System.out.println("Five: "+String.format("%.2f", findMedian(inputOne,inputTwo)));
 	}
+	
+	@Test
+	public void setSix()
+	{
+		int[] inputOne= {0,0,0,0,0};
+		int[] inputTwo= {-1,0,0,0,0,0,1};
+		System.out.println("Six: "+String.format("%.2f", findMedian(inputOne,inputTwo)));
+	}
+
 
 	//Solution 1
 
@@ -123,7 +132,7 @@ public class P027_MedianOfTwoArrays {
 	//if odd, return n/2
 	//if even return (n/2+(n+1)/2)2, where n is the element at the respective index
 	
-	private float findMedian(int[] arrayOne,int[] arrayTwo)
+	private double findMedian(int[] arrayOne,int[] arrayTwo)
 	{
 		List<Integer>arrayThree=new ArrayList<>();//O[1]
 		int i=0;int j=0;int absoluteOne=0;int absolutetwo=0;
@@ -155,13 +164,13 @@ public class P027_MedianOfTwoArrays {
 		
 		for(;i<arrayOne.length;i++)//O[N-M]
 		{
-			arrayThree.add(arrayOne[i]);
+			arrayThree.add(Math.abs(arrayOne[i]));
 		}
 
 
 		for(;j<arrayTwo.length;j++)//O[M-N]
 		{
-			arrayThree.add(arrayTwo[j]);
+			arrayThree.add(Math.abs(arrayTwo[j]));
 		}
 		
 		//To find the median
@@ -170,11 +179,11 @@ public class P027_MedianOfTwoArrays {
 
 		if(arrayThree.size()%2==0)//O[1]
 		{
-			return (arrayThree.get(midSize-1)+arrayThree.get(midSize))/2;
+			return(double) (arrayThree.get(midSize-1)+arrayThree.get(midSize))/2;
 		}
 		else
 		{
-			return arrayThree.get(midSize);
+			return (double) arrayThree.get(midSize);
 		}
 
 	}
