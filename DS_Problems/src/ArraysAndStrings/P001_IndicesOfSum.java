@@ -1,5 +1,7 @@
 package ArraysAndStrings;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.junit.jupiter.api.Test;
 
@@ -13,6 +15,8 @@ public class P001_IndicesOfSum {
 		int[] indicesOfSum = getIndicesOfSum(numbers,target);
 		System.out.println(Arrays.toString(indicesOfSum));
 	}
+	
+	
 	@Test
 	public void dataSet_Two()
 	{
@@ -31,7 +35,15 @@ public class P001_IndicesOfSum {
 		System.out.println(Arrays.toString(indicesOfSum));
 	}
 	
-	private int[] getIndicesOfSum(int[] numbers,int target)
+	@Test
+	public void dataSet_Four()
+	{
+		int[] numbers= {2,7,11,15};
+		int target=9;
+		int[] indicesOfSum = getIndicesOfSum(numbers,target);
+		System.out.println(Arrays.toString(indicesOfSum));
+	}
+	private int[] getIndicesOfSum1(int[] numbers,int target)
 	{
 		for(int i=0;i<numbers.length;i++) 
 		{
@@ -47,5 +59,22 @@ public class P001_IndicesOfSum {
 		throw new RuntimeException("No match");
 		
 	}
+	
+	 public int[] getIndicesOfSum(int[] nums, int target) 
+	    {
+	        Map<Integer,Integer> refMap=new HashMap<Integer, Integer>();
+	        for(int i=0; i<nums.length;i++)
+	        {
+	            if(refMap.containsKey(nums[i]))
+	            return new int[] {i,refMap.get(nums[i])};
+	            else
+	            {
+	                refMap.put(target-nums[i],i);
+	            }
+	        }
+	throw new RuntimeException ("No Match");        
+	    }
 
-}
+	}
+
+

@@ -1,7 +1,9 @@
 package ArraysAndStrings;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.Test;
 
@@ -124,7 +126,7 @@ public class P045_StartOfAnagrams {
 	}
 
 	
-	private List<Integer> findStartOfAnangram(String s,String p)
+	private List<Integer> findStartOfAnangram2(String s,String p)
 	{  List<Integer> output=new ArrayList<>();
 	
 		if(p.length()<=s.length())
@@ -161,4 +163,59 @@ public class P045_StartOfAnagrams {
 		return output;
 	}
 
+	
+	
+//Solution 2
+	
+//Loop through the length of anagram String
+	//add the character and occurance to a hashMap
+//Declare 2 variables start and end and assign to zero and declare a count varaiable
+//loop through the length of the input String using end
+	//if the value is present in map, reduce the occurance of the value in map and increment the count value
+	//increment the end value
+	
+	//if the count is equal to length of size of anagram string
+	//add the start to output array
+	//if the element in start, is in the map then increase the occurance of the start by 1
+	//increment the start value
+	
+//return the output array	
+
+private List<Integer> findStartOfAnangram(String s,String p)
+{
+	List<Integer> output=new ArrayList<>();
+	char[] anagramArray=p.toCharArray();
+	char[] inputArray=s.toCharArray();
+	if(anagramArray.length<inputArray.length)
+	{
+		Map<Character,Integer> refMap=new HashMap<Character,Integer>();
+		for(char i:anagramArray)
+		{
+			refMap.put(i, refMap.getOrDefault(i, 0)+1);
+		}
+		int start=0;int end=0;int count=0;
+		while(end<inputArray.length)
+		{
+			if(refMap.containsKey(inputArray[end]) &&refMap.get(inputArray[end])>0 )
+			{
+				refMap.put(inputArray[end], refMap.get(inputArray[end])-1);
+				count++;
+				end++;
+			}
+			else
+			{
+				end++;
+			}
+			if(count==end-start)
+			{
+				//output.add
+			}
+		}
+		
+		
+	}
+	return output;
+}
+
+	
 }
