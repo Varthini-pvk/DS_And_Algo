@@ -3,56 +3,67 @@ package MockAssesments;
 import java.util.Arrays;
 import java.util.List;
 
-public class Problem3 {
+import org.junit.Test;
 
+
+
+public class Problem3 {
 
 	public static String getLargestString(String s, int k) {
 
 		String outputStr = "";
-		int i = 255;
-		boolean isThere = false;
-
-		int[] count = new int[256];
-		for (int j = 0; j < s.length(); j++) {
-			count[s.charAt(j)]++;
+		int[] refArray=new int[26];
+		int count=0;int next=0;
+		for(int i=0;i<s.length();i++)
+		{
+			refArray[s.charAt(i)-'a']++;
 		}
+		for(int i=refArray.length-1;i>=0;i--)
+		{
+			next=i-1;
+			while(refArray[i]>0)
+			{
+				count=0;
+				while(refArray[i]>0&&count<k)
+				{
+					refArray[i]--;
+					outputStr+=(char)(i+'a');
+					count++;
+				}
+				while(next>0&&refArray[next]<1)
+				{
+					next--;
+				}
+				if(next==0&&refArray[next]<1) break;
+				refArray[next]--;
+				outputStr+=(char)(next+'a');
 
-		while(i >= 0) {
-			for(int j=0; j < Math.min(count[i], k); j++) {
-				outputStr += "" + (char)(i);
+
 			}
-
-			count[i] -= Math.min(count[i], k);
-			if(count[i] == 0) {
-				i -= 1;
-				continue;
-			}
-
-			isThere = false;
-
-			for(int j = i-1; j >= 0; j--) {				
-				if(count[j] > 0) {
-					outputStr += "" + (char)(j);
-					count[j] -= 1;
-					isThere = true;
-					break;
-				}				
-			}
-
-			if(isThere == false)
-				break;
-
 		}
 		return outputStr;
 
 	}
 
-
-	public static void main(String[] args) {
+	@Test
+	public  void dataSetOne() {
 		String s = "azzzzz";
 		int k = 2;
 		System.out.println(getLargestString(s, k));
 	}
+	@Test
+	public  void dataSetTwo() {
+		String s = "azzzzza";
+		int k = 2;
+		System.out.println(getLargestString(s, k));
+	}
+	@Test
+	public  void dataSetThree() {
+		String s = "cccba";
+		int k = 2;
+		System.out.println(getLargestString(s, k));
+	}
+
 
 
 }
