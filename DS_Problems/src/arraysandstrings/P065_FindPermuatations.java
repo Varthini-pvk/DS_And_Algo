@@ -11,7 +11,6 @@ public class P065_FindPermuatations
 	public void dataSetOne() 
 	{
 		int[] array= {1,2,3};
-		
 		System.out.println(permute(array));
 	
 	}
